@@ -1,0 +1,66 @@
+C#企业级开发技术练习6答题卡
+
+班级：     信管1班
+姓名：     李祖森
+学号：     20190307125
+
+注：请将答案放置在序号下方。*/
+
+（一）
+using System;
+
+namespace ConsoleApp1
+{
+    class Teacher<T>
+    {
+        public void field(string fieldName, T t)
+        {
+            Console.WriteLine($"{fieldName}:{t},类型是{t.GetType().Name}");
+        }
+    }
+    class Program
+    { 
+        static void Main(string[] args)
+        {
+            Teacher<string> tea1 = new Teacher<string>();
+            tea1.field("姓名","zhao");
+            Teacher<decimal> tea2 = new Teacher<decimal>();
+            tea2.field("工资", 8202.34M);
+            Teacher<bool> tea3 = new Teacher<bool>();
+            tea3.field("编制", false);
+            Teacher<float> tea4 = new Teacher<float>();
+            tea4.field("评价", 90.23F);
+            Teacher<string> tea5 = new Teacher<string>();
+            tea5.field("工作日期", "2001/8/31 0:00:00");
+        }
+    }
+}
+
+（二）
+using System;
+
+namespace ConsoleApp1
+{
+    interface IPay<P, Q>
+    {
+        void Log(P x, Q y);
+    }
+    class Employee<T>:IPay<T,string>
+    {
+        public void Log(T pay,string name)=>
+            Console.WriteLine($"{name}:{pay},类型是{pay.GetType().Name}");
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee<int?> e1 = new Employee<int?>();
+            e1.Log("年终奖", 30000);
+            Employee<decimal> e2 = new Employee<decimal>();
+            e2.Log("核增绩效", 54321.67M);
+        }
+    }
+}
+
+
+
